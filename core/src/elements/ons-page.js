@@ -262,14 +262,21 @@ class PageElement extends BaseElement {
   }
 
   /**
-   * @param {Function} callback
+   * @method setDeviceBackButtonHandler
+   * @signature setDeviceBackButtonHandler()
+   * @param {Function} handler
+   *   [en]Device back button handler.[/en]
+   *   [ja]デバイスのバックボタンハンドラを返します。[/ja]
+   * @description
+   *   [en]Set the associated back button handler.[/en]
+   *   [ja]バックボタンハンドラを設定します。[/ja]
    */
-  setDeviceBackButtonHandler(callback) {
+  setDeviceBackButtonHandler(handler) {
     if (this._deviceBackButtonHandler) {
       this._deviceBackButtonHandler.destroy();
     }
 
-    this._deviceBackButtonHandler = DeviceBackButtonDispatcher.createHandler(this, callback);
+    this._deviceBackButtonHandler = DeviceBackButtonDispatcher.createHandler(this, handler);
   }
 
   /**
@@ -431,6 +438,26 @@ class PageElement extends BaseElement {
 
     this.remove();
   }
+
+  /**
+   * @property name
+   * @readonly
+   * @type {String}
+   * @description
+   *   [en]Page's name. Matches its filename or ons-template ID if applicable.[/en]
+   *   [ja][/ja]
+   */
+  get name() {
+    return this._name;
+  }
+
+  /**
+   * @property data
+   * @type {*}
+   * @description
+   *   [en]User's custom data passed to pushPage-like methods.[/en]
+   *   [ja][/ja]
+   */
 }
 
 window.OnsPageElement = document.registerElement('ons-page', {
